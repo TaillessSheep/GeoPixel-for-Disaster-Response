@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "conversations": [
+            {
+                "from": "human",
+                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+            },
+            {
+                "from": "bot",
+                "value": "The image is an aerial view of a tennis court complex surrounded by dense greenery, with lush trees and foliage. The tennis courts are empty, and the atmosphere is tranquil due to the absence of people or movement. The <p> tennis court-1 </p> [SEG] at right is a standard hard court with white boundary lines and a net stretched across the center. The <p> tennis court-2 </p> [SEG] , <p> tennis court-3 </p> [SEG] , and <p> tennis court-4 </p> [SEG] features the standard dimensions and markings of a tennis court, situated at the bottom right of the image. This could be a recreational facility or a professional training ground."
+            }
+        ],
+        "image": "data/GeoPixelD/train/P0224_0_800_0_800.png",
+        "polygons": "data/GeoPixelD/train/P0224_0_800_0_800.json"
+    }
+]
