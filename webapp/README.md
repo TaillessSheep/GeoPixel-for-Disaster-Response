@@ -4,7 +4,7 @@
 
 ## Preview
 
-<img src="src/assets/preview.png" alt="GeoRescue Web App Preview" width="600" />
+<img src="assets/preview.png" alt="GeoRescue Web App Preview" width="600" />
 
 
 
