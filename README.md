@@ -1,7 +1,20 @@
 # GeoPixel for Disaster Response
 This is a course project for Arin 5203, HKUST, by William Junan Cui, Junyi Qiu and Jiawei Shi, based on [GeoPixel](https://github.com/mbzuai-oryx/GeoPixel).
 
+```bash
+conda env create -f environment.yml
+```
 
+### SuperPod setup
+```bash
+module load slurm "nvhpc-hpcx-cuda12/23.11"
+
+srun --account=mscaisuperpod --partition=normal --gpus=1 \
+  --container-image=docker://nvcr.io#nvidia/pytorch:24.03-py3 \
+  --container-mounts=/home/wjcui/5203:/workspace \
+  --no-container-mount-home --container-remap-root --container-writable \
+  --pty bash
+```
 
 # GeoPixel <img src="assets/logo.png" height="50">: Pixel Grounding Large Multimodal Model in Remote Sensing [ICML 2025 🔥]
 

@@ -1,0 +1,7 @@
+name: geopixel
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+
+prefix: /opt/miniconda3/envs/geopixel
