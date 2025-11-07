@@ -1,7 +1,11 @@
 
 # GeoRescue Web App Design
 
-This is a code bundle for GeoRescue Web App Design. The original project is available at https://www.figma.com/design/q7YuKdsN84sEZyYBuA3tyU/GeoRescue-Web-App-Design.
+
+## Preview
+
+<img src="src/assets/preview.png" alt="GeoRescue Web App Preview" width="600" />
+
 
 
 ## Setup
