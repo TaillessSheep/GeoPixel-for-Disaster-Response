@@ -5,26 +5,51 @@ This is a course project for Arin 5203, HKUST, by William Junan Cui, Junyi Qiu a
 conda env create -f environment.yml
 ```
 
-### SuperPod setup
+## SuperPod Execution
+### ssh setup
+It is recommanded to setup your `~/.ssh/config` to the following and switch the [user] to your HKUST username (what is infront of the @ in your email):
+```txt
+# SuperPod from HKUST
+Host superpod
+    HostName superpod.ust.hk
+    User [user]
+    ServerAliveInterval 60
+    ServerAliveCountMax 5
+```
+
+Then you can use `ssh superpod` to access Superpod without getting timeout kicked out.
+
+### Setup
+For the first time setup, in Superpod, run
 ```bash
 module load slurm "nvhpc-hpcx-cuda12/23.11"
+```
 
+### Scripts
+#### Sync
+Under `./scripts` there are `upload.template.sh` and `download.template.sh`. To use them, make of copy of them then edit the name by removing `.template` and modify the script where is there is `[]`. Locally on your machine, run `upload.sh` for uploading your repo to Superpod and run `download.sh` to download the result from Superpod to local.
+#### Run
+Copy and edit the `run.template.sh` to `run.sh`, similar to the sync scripts above. This will be used later
+
+### Interactive run
+To activate the GPU in a container with correct CUDA:
+```bash
 srun --account=mscaisuperpod --partition=normal --gpus=1 \
   --container-image=docker://nvcr.io#nvidia/pytorch:24.03-py3 \
-  --container-mounts=/home/wjcui/5203:/workspace \
+  --container-mounts=[]:/workspace \
   --no-container-mount-home --container-remap-root --container-writable \
   --pty bash
 ```
- 
+
+Once you have access to GPU, navigate to your uploaded repository with `cd GeoPixel-for-Disaster-Response/`. Then, run the `run.sh` script you created earlier (see [Run](#run) above) to start your workflow.
+
+### Offline job
 ```bash
-pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
-pip install flash-attn==2.6.3 --no-build-isolation
-pip install -r requirements.txt
-
-python -m pip uninstall -y opencv-python opencv-contrib-python     opencv-python-headless opencv-contrib-python-headless
-python -m pip install --no-cache-dir opencv-python-headless==4.8.0.74 
-
-CUDA_VISIBLE_DEVICES=0 python chat.py --version='MBZUAI/GeoPixel-7B'
+sbatch --account=mscaisuperpod --partition=normal --gpus=1 \
+  --container-image=docker://nvcr.io#nvidia/pytorch:24.03-py3 \
+  --container-mounts=/home/wjcui/5203:/workspace \
+  --no-container-mount-home --container-remap-root --container-writable \
+  scripts/[bashfile.sh] 
 ```
 
 # GeoPixel <img src="assets/logo.png" height="50">: Pixel Grounding Large Multimodal Model in Remote Sensing [ICML 2025 🔥]
