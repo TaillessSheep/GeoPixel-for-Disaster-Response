@@ -7,6 +7,13 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 from PIL import Image
 import torch.nn.functional as F
+
+# Try to import tifffile for GeoTIFF support
+try:
+    import tifffile
+    HAS_TIFFFILE = True
+except ImportError:
+    HAS_TIFFFILE = False
 from transformers.modeling_outputs import CausalLMOutputWithPast
 from model.IXC.modeling_internlm_xcomposer2 import InternLMXComposer2ForCausalLM
 from model.IXC.modeling_internlm2 import InternLM2Model
@@ -153,7 +160,80 @@ class GeoPixelForCausalLM(InternLMXComposer2ForCausalLM):
         if isinstance(image, str):
             _, ext = os.path.splitext(image)
             if ext.lower() in {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp','.tif'}:
-                image = Image.open(image)
+                # Handle GeoTIFF files specially
+                if ext.lower() in {'.tif', '.tiff'}:
+                    try:
+                        if HAS_TIFFFILE:
+                            # Read GeoTIFF using tifffile
+                            arr = tifffile.imread(image)
+                            
+                            # Handle multi-band images (tifffile may return different shapes)
+                            if len(arr.shape) == 3:
+                                # If shape is (bands, height, width), transpose to (height, width, bands)
+                                if arr.shape[0] <= 3 and arr.shape[0] > 1:
+                                    arr = np.transpose(arr, (1, 2, 0))
+                                # If shape is (height, width, bands), keep as is
+                                elif arr.shape[2] <= 3:
+                                    pass  # Already in correct format
+                                else:
+                                    # Take first 3 bands if more than 3
+                                    arr = arr[:, :, :3]
+                            elif len(arr.shape) == 2:
+                                # Single band image - will convert to RGB later
+                                pass
+                            else:
+                                raise ValueError(f"Unexpected array shape: {arr.shape}")
+                            
+                            # Intelligent contrast stretching using percentiles (handles outliers better)
+                            if arr.dtype != np.uint8:
+                                # Use percentile-based normalization to handle outliers
+                                p2, p98 = np.percentile(arr, (2, 98))
+                                if p98 > p2:
+                                    arr_normalized = np.clip((arr - p2) / (p98 - p2), 0, 1)
+                                    arr_uint8 = (arr_normalized * 255).astype(np.uint8)
+                                else:
+                                    # Fallback if percentiles are equal
+                                    arr_min, arr_max = arr.min(), arr.max()
+                                    if arr_max > arr_min:
+                                        arr_normalized = (arr - arr_min) / (arr_max - arr_min)
+                                        arr_uint8 = (arr_normalized * 255).astype(np.uint8)
+                                    else:
+                                        arr_uint8 = np.zeros_like(arr, dtype=np.uint8)
+                            else:
+                                arr_uint8 = arr
+                            
+                            # Convert to PIL Image
+                            if len(arr_uint8.shape) == 2:
+                                # Single band: convert to grayscale then RGB
+                                image = Image.fromarray(arr_uint8, mode='L').convert('RGB')
+                            elif len(arr_uint8.shape) == 3:
+                                # Multi-band: ensure 3 channels for RGB
+                                if arr_uint8.shape[2] == 1:
+                                    image = Image.fromarray(arr_uint8[:, :, 0], mode='L').convert('RGB')
+                                elif arr_uint8.shape[2] == 3:
+                                    image = Image.fromarray(arr_uint8, mode='RGB')
+                                elif arr_uint8.shape[2] > 3:
+                                    # Take first 3 bands
+                                    image = Image.fromarray(arr_uint8[:, :, :3], mode='RGB')
+                                else:
+                                    raise ValueError(f"Cannot handle array with shape: {arr_uint8.shape}")
+                            else:
+                                raise ValueError(f"Unexpected array shape after processing: {arr_uint8.shape}")
+                        else:
+                            # Fallback to PIL if tifffile not available (will likely fail for GeoTIFF)
+                            print("Warning: tifffile not available. Attempting PIL (may fail for GeoTIFF).")
+                            image = Image.open(image)
+                    except Exception as e:
+                        print(f"Error loading GeoTIFF {image} with tifffile: {e}")
+                        print("Falling back to PIL (may fail for GeoTIFF files).")
+                        try:
+                            image = Image.open(image)
+                        except Exception as e2:
+                            print(f"PIL also failed: {e2}")
+                            raise
+                else:
+                    # Regular image files (jpg, png, etc.)
+                    image = Image.open(image)
                 w, h = image.size
                 _orig_hw = [(h, w)] 
             else:

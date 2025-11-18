@@ -19,35 +19,29 @@ Host superpod
 
 Then you can use `ssh superpod` to access Superpod without getting timeout kicked out.
 
-### Setup
-For the first time setup, in Superpod, run
-```bash
-module load slurm "nvhpc-hpcx-cuda12/23.11"
-```
-
 ### Scripts
-#### Sync
-Under `./scripts` there are `upload.template.sh` and `download.template.sh`. To use them, make of copy of them then edit the name by removing `.template` and modify the script where is there is `[]`. Locally on your machine, run `upload.sh` for uploading your repo to Superpod and run `download.sh` to download the result from Superpod to local.
-#### Run
-Copy and edit the `run.template.sh` to `run.sh`, similar to the sync scripts above. This will be used later
+
+Under `./scripts` there are a bunch of `*.template.sh`. To use them, make of copy of them then edit the name by removing `.template`. For example, `upload.template.sh` to `upload.sh`. 
+
+Then, modify the script where is there is `[]`. For example, in `upload.sh`, `[user]@superpod.ust.hk:/home/[user]/[path]/GeoPixel-for-Disaster-Response` to `wjcui@superpod.ust.hk:/home/wjcui/5203/GeoPixel-for-Disaster-Response`.
+
+### Upload from local to server
+On your local machine, at the root of the repo, run `bash scripts/upload.sh` to upload the entire repo to SuperPod. Always do that after modification at local.
+
+### SuperPod Setup
+For the first time setup, in Superpod, run `bash scripts/setup.sh`.
 
 ### Interactive run
-To activate the GPU in a container with correct CUDA:
-```bash
-srun --account=mscaisuperpod --partition=normal --gpus=1 \
-  --container-image=docker://nvcr.io#nvidia/pytorch:24.03-py3 \
-  --container-mounts=[]:/workspace \
-  --no-container-mount-home --container-remap-root --container-writable \
-  --pty bash
-```
+To activate the GPU in a container with correct CUDA, run `bash scripts/run.sh`.
 
-Once you have access to GPU, navigate to your uploaded repository with `cd GeoPixel-for-Disaster-Response/`. Then, run the `run.sh` script you created earlier (see [Run](#run) above) to start your workflow.
+Once you have access to the container, you can run the model as in the GeoPixel repo. For example, `CUDA_VISIBLE_DEVICES=0 python chat.py --version='MBZUAI/GeoPixel-7B'`.
+
 
 ### Offline job
 ```bash
 sbatch --account=mscaisuperpod --partition=normal --gpus=1 \
   --container-image=docker://nvcr.io#nvidia/pytorch:24.03-py3 \
-  --container-mounts=/home/wjcui/5203:/workspace \
+  --container-mounts=/home/[user]/[path]GeoPixel-for-Disaster-Response:/workspace \
   --no-container-mount-home --container-remap-root --container-writable \
   scripts/[bashfile.sh] 
 ```
