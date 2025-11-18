@@ -24,6 +24,16 @@ For the first time setup, in Superpod, run
 ```bash
 module load slurm "nvhpc-hpcx-cuda12/23.11"
 ```
+```bash
+module load slurm
+
+sbatch --account=mscaisuperpod --partition=normal --gpus=1 \
+      --container-image="docker://nvcr.io#nvidia/pytorch:24.03-py3" \
+      --container-mounts=/home/wjcui/5203/GeoPixel-for-Disaster-Response:/workspace \
+      --no-container-mount-home --container-remap-root --container-writable \
+      --container-save="/home/$USER/containers/geopixel.sqsh"\
+      script/setup.sh
+```
 
 ### Scripts
 #### Sync

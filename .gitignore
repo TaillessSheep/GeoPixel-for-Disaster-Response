@@ -1,5 +1,6 @@
 /scripts/*
 !/scripts/*.template.sh
+
 /model
 /vis_output
 slurm*

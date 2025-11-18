@@ -11,5 +11,5 @@ pycocotools==2.0.8
 sentencepiece==0.1.99
 tensorboard==2.18.0
 transformers==4.33.2
-
+tifffile==2025.5.10
 
