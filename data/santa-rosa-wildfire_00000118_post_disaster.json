@@ -1,0 +1,17 @@
+[
+    {
+        "id": 22,
+        "conversations": [
+            {
+                "from": "human",
+                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+            },
+            {
+                "from": "bot",
+                "value": 0
+            }
+        ],
+        "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000118_post_disaster.png",
+        "polygons": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000118_post_disaster.json"
+    }
+]

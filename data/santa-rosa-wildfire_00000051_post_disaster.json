@@ -1,0 +1,17 @@
+[
+    {
+        "id": 14,
+        "conversations": [
+            {
+                "from": "human",
+                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+            },
+            {
+                "from": "bot",
+                "value": "This aerial image shows an area after a fire. In the scene, there are multiple <p>destroyed buildings</p> [SEG] scattered around. In the middle, there are two clustered damaged buildings, and in the lower left part, there is a scattered damaged building. The entire scene is dominated by charred vegetation, gray-white, brown-yellow, dark brown chaotic building ruins, and green forests with soft earth tones."
+            }
+        ],
+        "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000051_post_disaster.png",
+        "polygons": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000051_post_disaster.json"
+    }
+]
