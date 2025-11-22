@@ -1,14 +1,14 @@
 [
     {
-        "id": 10,
+        "id": 13,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial image shows a residential area after a fire. The scene is dotted with multiple <p>destroyed buildings</p> [SEG]. On the straight road that runs through the upper left corner and the lower middle part, several fragmented and damaged buildings are scattered along both sides of the road, generally distributed in the middle of the map; there are several damaged buildings on the upper left side; the entire scene is dominated by charred vegetation, gray-white, brown-yellow chaotic ruins of buildings and soft earth tones, which are typical destruction scenes after a fire."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000031_post_disaster.png",

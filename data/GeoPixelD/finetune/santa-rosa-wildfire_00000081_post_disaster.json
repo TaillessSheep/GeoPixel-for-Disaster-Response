@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This aerial view depicts a wildfire-ravaged landscape characterized by scorched brown earth, dense forest, and winding dirt paths. Multiple <p>destroyed buildings</p > [SEG] are identified as bright, irregular patches of ash and rubble scattered across the terrain. A prominent cluster of ruins is located in the right-central area (spanning approximately 739-865px width and 361-426px height). Another significant debris field lies along the upper right edge (roughly 960-1023px width and 28-163px height). In the lower central region, damaged structures follow the contour of the land (303-450px width, 747-828px height). Further scattered remnants are visible in the bottom left (144-248px width, 972-1023px height) and along the middle-left side (43-156px width, 95-296px height).",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjY0Nw.Q0NCdY6TFfi38fZQA8L4Y5hbWUI",
   "img": "santa-rosa-wildfire_00000081_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

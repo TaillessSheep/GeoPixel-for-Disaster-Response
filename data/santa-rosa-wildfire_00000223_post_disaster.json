@@ -1,14 +1,14 @@
 [
     {
-        "id": 30,
+        "id": 71,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial image depicts a residential neighborhood devastated by wildfire, featuring winding roads that separate areas of scorched earth from surviving green trees. Numerous <p>destroyed buildings</p > [SEG] are visible as messy, off-white and gray patches of ash and debris scattered throughout the scene. A large concentration of ruins is found in the upper left quadrant (spanning approximately 96-247px width and 202-460px height). Another significant cluster occupies the central and lower-central regions (roughly 368-585px width and 493-924px height). Distinct debris fields are also located along the far left edge (8-130px width, 517-609px height) and on the right side (816-892px width, 588-687px height), with smaller remnants scattered in the top right corner (905-1019px width, 0-84px height)."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000223_post_disaster.png",

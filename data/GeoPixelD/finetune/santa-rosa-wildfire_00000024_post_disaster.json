@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This satellite image captures a post-wildfire area with several scattered <p>destroyed buildings</p> [SEG], all marked by messy off-white debris and fragmented contours. In the middle-right region (781-905px width, 643-806px height), four clustered destroyed buildings are distributed: the upper middle-right (781-881px width, 643-715px height) features two adjacent ruins with irregular boundaries; the lower middle-right (826-905px width, 731-806px height) contains two more compact destroyed buildings with disjointed contours. The bottom-right corner (993-1023px width, 888-937px height) has a small, elongated destroyed building with fragmented edges. The scene is dominated by messy off-white debris, charred earthy tones, and scattered building remnants, embodying the devastating aftermath of the wildfire.",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjU5MA.z_0xBJH0sOGeWUR6nCaMevXryT4",
   "img": "santa-rosa-wildfire_00000024_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

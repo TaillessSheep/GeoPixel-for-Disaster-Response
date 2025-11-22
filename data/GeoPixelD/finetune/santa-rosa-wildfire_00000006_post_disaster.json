@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This satellite image captures a post-wildfire area with numerous <p>destroyed buildings</p> [SEG] scattered across the scene, characterized by their messy off-white appearance. A rectangular destroyed building lies in the upper middle (774-831px width, 30-120px height). The upper right region (860-1023px width, 123-348px height) clusters several small damaged buildings with irregular contours. In the middle left (51-203px width, 421-495px height), three compact destroyed buildings are arranged in a row; the middle area (210-380px width, 579-747px height) features four elongated destroyed buildings aligned horizontally. The lower middle to right (295-649px width, 624-925px height) contains a large clustered area of destroyed buildings with fragmented and overlapping contours. The scene is dominated by messy off-white building ruins, charred vegetation, and muted earthy tones, typical of post-fire devastation.",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjU3Mg.H2ejg3glI0juXPro4MgM5sT8ddw",
   "img": "santa-rosa-wildfire_00000006_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [
@@ -279,6 +279,72 @@
         [
           774,
           30
+        ]
+      ],
+      [
+        [
+          0,
+          214
+        ],
+        [
+          11,
+          215
+        ],
+        [
+          34,
+          209
+        ],
+        [
+          66,
+          211
+        ],
+        [
+          66,
+          235
+        ],
+        [
+          85,
+          235
+        ],
+        [
+          85,
+          226
+        ],
+        [
+          119,
+          228
+        ],
+        [
+          119,
+          238
+        ],
+        [
+          121,
+          238
+        ],
+        [
+          121,
+          278
+        ],
+        [
+          116,
+          397
+        ],
+        [
+          29,
+          400
+        ],
+        [
+          30,
+          379
+        ],
+        [
+          0,
+          378
+        ],
+        [
+          0,
+          214
         ]
       ],
       [

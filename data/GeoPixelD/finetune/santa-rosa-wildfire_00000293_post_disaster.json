@@ -1,0 +1,93 @@
+{
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
+  "height": 1024,
+  "id": "MjUyNjg2MA.2jNjGreX8hC_5Y1ch4P3J70SNY4",
+  "img": "santa-rosa-wildfire_00000293_post_disaster.png",
+  "phrases": "destroyed building",
+  "polygons": [
+    [
+      [
+        [
+          280,
+          40
+        ],
+        [
+          300,
+          39
+        ],
+        [
+          300,
+          52
+        ],
+        [
+          297,
+          57
+        ],
+        [
+          280,
+          58
+        ],
+        [
+          279,
+          44
+        ],
+        [
+          280,
+          40
+        ]
+      ],
+      [
+        [
+          176,
+          222
+        ],
+        [
+          171,
+          209
+        ],
+        [
+          188,
+          204
+        ],
+        [
+          191,
+          216
+        ],
+        [
+          209,
+          209
+        ],
+        [
+          218,
+          230
+        ],
+        [
+          216,
+          233
+        ],
+        [
+          191,
+          244
+        ],
+        [
+          183,
+          245
+        ],
+        [
+          176,
+          225
+        ],
+        [
+          176,
+          222
+        ],
+        [
+          176,
+          222
+        ]
+      ]
+    ]
+  ],
+  "width": 1024
+}

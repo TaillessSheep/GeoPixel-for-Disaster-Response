@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This aerial image shows a post-disaster scene where scorched earth meets patches of green forest, connected by winding roads. Numerous <p>destroyed buildings</p> [SEG] are visible as irregular, light-colored patches of ash and debris. A significant concentration of ruins is located in the lower central region (spanning roughly 539-689px width and 697-787px height). Another distinct cluster lies in the bottom left corner (184-288px width, 873-1018px height). In the upper central area, two adjacent debris fields are nestled among trees (476-584px width, 261-332px height). Additional scattered fragments are present in the top left (80-212px width, 0-422px height) and along the right-hand side (901-975px width, 487-937px height).",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjgzNw.z4DsR-cjB1w4NlhDbzLUa914SGY",
   "img": "santa-rosa-wildfire_00000270_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

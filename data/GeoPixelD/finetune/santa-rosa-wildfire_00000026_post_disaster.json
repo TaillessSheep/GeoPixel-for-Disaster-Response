@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "The image presents a densely vegetated area post-wildfire, where the remnants of destroyed structures are barely visible amidst the charred landscape. A few damaged buildings, characterized by their beige and white tones, are scattered throughout the scene, with notable instances located centrally (334-313px width, 237-225px height) and towards the edges (0-39px width, 23-54px height). The surrounding foliage, now a mix of green and blackened areas, indicates the fire's impact on the local environment. The overall scene is one of devastation, with the sparsely distributed ruins and the fire-ravaged vegetation painting a picture of a landscape in recovery.",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjU5Mg.FPyMeB50ZgYrPRYve9gyCBJYr_c",
   "img": "santa-rosa-wildfire_00000026_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

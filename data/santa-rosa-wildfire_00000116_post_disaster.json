@@ -1,14 +1,14 @@
 [
     {
-        "id": 21,
+        "id": 43,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial image captures a post-wildfire landscape dominated by scorched brown hills and patches of green forest, with a winding road traversing the left side. Several <p>destroyed buildings</p > [SEG] are visible, appearing as messy, light-colored patches of rubble. A prominent ruin is situated inside a road curve in the middle-left (spanning approximately 165-212px width and 531-612px height). Smaller isolated remnants are found nearby (89-99px width, 647-664px height) and along the far left edge (0-11px width, 710-742px height)."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000116_post_disaster.png",

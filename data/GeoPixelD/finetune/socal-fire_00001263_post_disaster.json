@@ -1,0 +1,67 @@
+{
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
+  "height": 1024,
+  "id": "MjU4MDkzMA.mB50d2ql8MYdnRgvieCETLlpvf4",
+  "img": "socal-fire_00001263_post_disaster.png",
+  "phrases": "destroyed building",
+  "polygons": [
+    [
+      [
+        [
+          366,
+          1007
+        ],
+        [
+          375,
+          986
+        ],
+        [
+          405,
+          997
+        ],
+        [
+          401,
+          1009
+        ],
+        [
+          417,
+          1016
+        ],
+        [
+          423,
+          1006
+        ],
+        [
+          444,
+          1013
+        ],
+        [
+          440,
+          1023
+        ],
+        [
+          400,
+          1023
+        ],
+        [
+          401,
+          1021
+        ],
+        [
+          380,
+          1015
+        ],
+        [
+          384,
+          1009
+        ],
+        [
+          366,
+          1007
+        ]
+      ]
+    ]
+  ],
+  "width": 1024
+}

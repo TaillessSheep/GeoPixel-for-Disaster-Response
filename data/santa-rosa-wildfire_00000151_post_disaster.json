@@ -1,14 +1,14 @@
 [
     {
-        "id": 24,
+        "id": 56,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial image shows a post-disaster agricultural landscape featuring expansive vineyard rows, winding roads, and patches of dense green forest. Several <p>destroyed buildings</p > [SEG] are evident, appearing as bright, messy patches of rubble amidst the greenery and fields. A prominent ruin is nestled within the vineyard on the left side (spanning roughly 163-229px width and 400-487px height). Another significant debris field is located in the upper right quadrant (789-843px width, 372-467px height). Scattered fragments of destruction are also visible in the bottom right corner (878-945px width, 958-1023px height; and 1007-1020px width, 958-973px height)."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000151_post_disaster.png",

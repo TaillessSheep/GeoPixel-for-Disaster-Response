@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This aerial view captures a landscape post-wildfire, with signs of destruction interspersed among the remaining greenery. The scene reveals a series of damaged structures, highlighted by their disrupted forms and chaotic debris patterns, primarily in light beige and white hues. Notable clusters of destruction are visible in the upper right quadrant (867-1023px width, 951-56px height) and middle left (261-734px width, 730-30px height). The surrounding vegetation, a mix of scorched earth and resilient green patches, indicates the fire's path of devastation. The overall scene is a stark portrayal of a natural disaster's aftermath, with the scattered ruins and fire-ravaged foliage painting a picture of both destruction and the potential for renewal.",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjU5Mw.8l66iViM8NFutfm2SRAPofBqfmM",
   "img": "santa-rosa-wildfire_00000027_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

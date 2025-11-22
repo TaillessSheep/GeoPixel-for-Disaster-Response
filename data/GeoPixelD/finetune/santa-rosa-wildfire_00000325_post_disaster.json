@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This aerial view captures a post-disaster landscape divided between open scorched earth on the left and dense dark forest on the right. The scene contains several <p>destroyed buildings</p > [SEG], appearing as stark white and gray patches of rubble against the earthy tones. A large, concentrated complex of ruined structures is situated in the middle-to-upper right quadrant (spanning 880-1006px width and 348-432px height). In the upper left quadrant, a distinct linear arrangement of small, square-like debris traces a path (323-381px width, 77-140px height), with further scattered remnants visible along the very top edge (221-295px width, 0-49px height).",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjg5Mw._WEffeoEWF_o0wtyz1dHQSRpvgk",
   "img": "santa-rosa-wildfire_00000325_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

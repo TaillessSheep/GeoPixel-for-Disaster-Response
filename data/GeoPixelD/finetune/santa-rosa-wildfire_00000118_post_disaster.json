@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": 0,
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjY4NA._gbDO8NnfxFIadnxPARjlFk1htE",
   "img": "santa-rosa-wildfire_00000118_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

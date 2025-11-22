@@ -1,10 +1,10 @@
 {
-  "caption": null,
-  "gcg_description": "This aerial image shows a forest after a fire. In the scene, there are multiple <p>destroyed buildings</p> [SEG] scattered around. On the left side, several destroyed buildings are scattered on both sides of the road. On the upper-middle part, there are several clustered damaged buildings. On the middle and lower parts of the right side, there are several scattered damaged buildings. The entire scene is dominated by charred vegetation, gray-white, brown-yellow chaotic ruins of buildings and soft earth tones. These are typical scenes of destruction after a fire.",
+  "caption": "The scene of multiple buildings being damaged after a wildfire",
+  "gcg_description": "There are several <p>destroyed buildings</p> [SEG] in the picture.",
   "height": 1024,
   "id": "MjUyNjYwMQ.QlG-FYnHU0HvLxi8t1YIElaj4Co",
   "img": "santa-rosa-wildfire_00000035_post_disaster.png",
-  "phrases": null,
+  "phrases": "destroyed building",
   "polygons": [
     [
       [

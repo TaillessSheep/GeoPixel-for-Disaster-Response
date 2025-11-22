@@ -1,14 +1,14 @@
 [
     {
-        "id": 42,
+        "id": 98,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial image captures a post-wildfire scene characterized by vineyard rows on the left and scorched, rugged terrain on the right. Scattered across the landscape are multiple <p>destroyed buildings</p > [SEG], appearing as bright, off-white or gray patches of rubble and ash. A distinct group of debris is located in the upper right corner (940-1023px width, 0-160px height). On the left side, near the agricultural fields, two isolated ruins are visible (134-212px width, 308-514px height). The remaining structures are dispersed across the lower middle and right sections (380-944px width, 600-1010px height), all exhibiting the flattened, fragmented look of fire-ravaged structures."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000346_post_disaster.png",

@@ -1,14 +1,14 @@
 [
     {
-        "id": 27,
+        "id": 63,
         "conversations": [
             {
                 "from": "human",
-                "value": "Could you perform an in-depth analysis of this photo, including interleaved segmentation masks to map each part of your answer to specific image object?"
+                "value": "Can you describe the damage status of the houses?"
             },
             {
                 "from": "bot",
-                "value": "This aerial view captures a post-wildfire landscape featuring a mix of dense green forest, scorched earth, and a small green pond in the upper left. Several <p>destroyed buildings</p > [SEG] are visible as light-colored, irregular patches of ash and rubble. A prominent cluster of ruins lies near a curved driveway in the bottom left (spanning approximately 34-179px width and 750-880px height). In the center of the image, a distinct rectangular debris field is visible (558-602px width, 663-714px height), with another damaged structure located nearby to the left (293-336px width, 578-672px height). Further north, embedded in the trees, are additional destroyed structures (478-534px width, 312-395px height; and 463-522px width, 214-259px height). Finally, scattered fragments are present in the bottom right corner (677-763px width, 927-975px height)."
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000174_post_disaster.png",

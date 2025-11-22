@@ -1,0 +1,17 @@
+[
+    {
+        "id": 158,
+        "conversations": [
+            {
+                "from": "human",
+                "value": "Can you describe the damage status of the houses?"
+            },
+            {
+                "from": "bot",
+                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
+            }
+        ],
+        "image": "data/GeoPixelD/finetune/socal-fire_00000972_post_disaster.png",
+        "polygons": "data/GeoPixelD/finetune/socal-fire_00000972_post_disaster.json"
+    }
+]
