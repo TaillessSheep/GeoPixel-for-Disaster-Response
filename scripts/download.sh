@@ -1,0 +1,2 @@
+rsync -avz --exclude='__pycache__/' jqiuar@superpod.ust.hk:/home/jqiuar/5203/GeoPixel-for-Disaster-Response/ . --progress
+# rsync -avz --exclude='__pycache__/jqiuar/5203//' wjcui@superpod.ust.hk:/home/wjcui/5203/GeoPixel-for-Disaster-Response/ . --progress

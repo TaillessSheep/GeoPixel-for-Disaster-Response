@@ -1,0 +1,2 @@
+rsync -avz --include='.git/' --include='.git/**' --include='.*' --exclude='__pycache__/' --exclude='.DS_Store' . jqiuar@superpod.ust.hk:/home/jqiuar/5203/GeoPixel-for-Disaster-Response --progress
+# rsync -avz --include='.git/' --include='.git/**' --include='.*' --exclude='__pycache__/' --exclude='.DS_Store' . wjcui@superpod.ust.hk:/home/wjcui/5203/GeoPixel-for-Disaster-Response --progress

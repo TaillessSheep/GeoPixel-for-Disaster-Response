@@ -9,7 +9,7 @@ echo -e "\033[0;32m[INFO] Switching working directory to project root: $PROJECT_
 cd "$PROJECT_ROOT"
 
 export CUDA_DEVICE_MAX_CONNECTIONS=1
-export MODEL="MBZUAI/GeoPixel-7B"
+export MODEL="MBZUAI/GeoPixel-7B-RES"
 export DATA="data.txt"
 
 GPUS_PER_NODE=1
