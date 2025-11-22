@@ -4,3 +4,12 @@
 /model
 /vis_output
 slurm*
+
+__pycache__/
+job_param.json
+
+/data/*
+!/data/example/
+/data/example/*
+!data/example/**
+
