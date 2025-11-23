@@ -46,6 +46,11 @@ sbatch --account=mscaisuperpod --partition=normal --gpus=1 \
   scripts/[bashfile.sh] 
 ```
 
+## Server
+```bash
+ssh -L 9527:dgx-18:5000 superpod
+```
+
 # GeoPixel <img src="assets/logo.png" height="50">: Pixel Grounding Large Multimodal Model in Remote Sensing [ICML 2025 🔥]
 
 ![](https://i.imgur.com/waxVImv.png)
