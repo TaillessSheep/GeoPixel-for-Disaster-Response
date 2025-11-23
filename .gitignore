@@ -13,3 +13,5 @@ job_param.json
 /data/example/*
 !data/example/**
 
+/.idea
+
