@@ -18,3 +18,5 @@ Run `npm i` to install the dependencies.
 
 Run `npm run dev` to start the development server.
   
+## Connect to backend in SuperPod
+ssh -L 9527:dgx-[id]:5000 superpod
