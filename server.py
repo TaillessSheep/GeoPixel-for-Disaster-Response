@@ -6,20 +6,16 @@ Requires Flask: pip install flask
 
 import sys
 import os
-import re
-import cv2
-import torch
-import random
 import argparse
-import numpy as np
-import transformers
 from datetime import datetime
 try:
     from datetime import timezone
     HAS_TIMEZONE = True
 except ImportError:
     HAS_TIMEZONE = False
-from model.geopixel import GeoPixelForCausalLM
+
+# Import common functions from chat.py
+from chat import load_model, process_query_image
 
 try:
     from flask import Flask, jsonify, request
@@ -202,50 +198,8 @@ def chat():
         if not os.path.exists(image_path):
             return jsonify({'error': f'Image file not found: {image_path}'}), 404
         
-        # Process the request
-        image = [image_path]
-        
-        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
-            response, pred_masks = model.evaluate(tokenizer, query, images=image, max_new_tokens=300)
-        
-        result = {
-            'response': response.replace("\n", " ").replace("  ", " ").strip(),
-            'has_masks': False
-        }
-        
-        # Process masks if present
-        if pred_masks and '[SEG]' in response:
-            pred_masks = pred_masks[0]
-            pred_masks = pred_masks.detach().cpu().numpy()
-            pred_masks = pred_masks > 0
-            image_np = cv2.imread(image_path)
-            image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
-            
-            save_img = image_np.copy()
-            pattern = r'<p>(.*?)</p>\s*\[SEG\]'
-            matched_text = re.findall(pattern, response)
-            phrases = [text.strip() for text in matched_text]
-
-            for i in range(pred_masks.shape[0]):
-                mask = pred_masks[i]
-                color = [random.randint(0, 255) for _ in range(3)]
-                mask_rgb = np.stack([mask, mask, mask], axis=-1) 
-                color_mask = np.array(color, dtype=np.uint8) * mask_rgb
-
-                save_img = np.where(mask_rgb, 
-                        (save_img * 0.5 + color_mask * 0.5).astype(np.uint8), 
-                        save_img)
-            
-            # Save masked image
-            vis_save_path = "./vis_output"
-            os.makedirs(vis_save_path, exist_ok=True)
-            save_img = cv2.cvtColor(save_img, cv2.COLOR_RGB2BGR)
-            save_path = f"{vis_save_path}/{os.path.basename(image_path).split('.')[0]}_masked.jpg"
-            cv2.imwrite(save_path, save_img)
-            
-            result['has_masks'] = True
-            result['masked_image_path'] = save_path
-            result['phrases'] = phrases
+        # Process the request using common function
+        result = process_query_image(model, tokenizer, query, image_path)
         
         return jsonify(result), 200
         
@@ -254,49 +208,13 @@ def chat():
             'error': f'Error processing request: {str(e)}'
         }), 500
 
-def load_model(version='MBZUAI/GeoPixel-7B'):
+def load_model_for_server(version='MBZUAI/GeoPixel-7B'):
     """
-    Load the GeoPixel model and tokenizer.
+    Load the GeoPixel model and tokenizer for server use.
     This is called once on server startup.
     """
     global model, tokenizer
-    
-    print(f'Initializing tokenizer from: {version}')
-    tokenizer = transformers.AutoTokenizer.from_pretrained(
-        version,
-        cache_dir=None,
-        padding_side='right',
-        use_fast=False,
-        trust_remote_code=True,
-    )
-    tokenizer.pad_token = tokenizer.unk_token
-    seg_token_idx, bop_token_idx, eop_token_idx = [
-        tokenizer(token, add_special_tokens=False).input_ids[0] for token in ['[SEG]','<p>', '</p>']
-    ]
-   
-    kwargs = {"torch_dtype": torch.bfloat16}    
-    geo_model_args = {
-        "vision_pretrained": 'facebook/sam2-hiera-large',
-        "seg_token_idx": seg_token_idx,
-        "bop_token_idx": bop_token_idx,
-        "eop_token_idx": eop_token_idx
-    }
-    
-    print(f'Loading model from: {version}')
-    model = GeoPixelForCausalLM.from_pretrained(
-        version, 
-        low_cpu_mem_usage=True, 
-        **kwargs,
-        **geo_model_args
-    )
-
-    model.config.eos_token_id = tokenizer.eos_token_id
-    model.config.bos_token_id = tokenizer.bos_token_id
-    model.config.pad_token_id = tokenizer.pad_token_id
-    model.tokenizer = tokenizer
-    
-    model = model.bfloat16().cuda().eval()
-    print('Model loaded and ready for inference')
+    model, tokenizer = load_model(version)
 
 def parse_args():
     """Parse command line arguments."""
@@ -314,7 +232,7 @@ def main():
     # Load model on startup
     print("Loading GeoPixel model...")
     try:
-        load_model(args.version)
+        load_model_for_server(args.version)
         print("Model loaded successfully!")
     except Exception as e:
         print(f"Error loading model: {e}")
