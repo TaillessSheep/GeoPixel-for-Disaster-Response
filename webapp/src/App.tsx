@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ImageUpload } from './components/ImageUpload';
 import { PromptSelector } from './components/PromptSelector';
 import { ResultDisplay } from './components/ResultDisplay';
+import { Header } from './components/Header';
+import { ProcessingView } from './components/ProcessingView';
+import { SectionTitle } from './components/SectionTitle';
+import { WelcomeSection } from './components/WelcomeSection';
 import { Button } from './components/ui/button';
-import { Progress } from './components/ui/progress';
-import { Satellite, ArrowLeft } from 'lucide-react';
+import { useChat } from './hooks/useChat';
 
 type AppState = 'upload' | 'processing' | 'result';
 
 export default function App() {
+  const { chat, isLoading, error } = useChat();
   const [state, setState] = useState<AppState>('upload');
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [prompt, setPrompt] = useState('');
@@ -24,33 +28,74 @@ export default function App() {
     setSelectedImage(null);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!selectedImage || !prompt) return;
 
     setState('processing');
     setProgress(0);
 
-    // Simulate processing with progress
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          // Simulate result
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            setResultImage(reader.result as string);
-            setOutputPrompt(
-              `Analysis completed successfully. The system has processed the satellite imagery and identified key areas based on your prompt: "${prompt}". Results are highlighted in the processed image.`
-            );
-            setState('result');
-          };
-          reader.readAsDataURL(selectedImage);
-          return 100;
-        }
-        return prev + 10;
+    try {
+      // Call the chat API with file directly (single request)
+      setProgress(20);
+      const response = await chat({
+        prompt: prompt,
+        file: selectedImage,
       });
-    }, 300);
+
+      setProgress(80);
+      
+      // Handle the response
+      setOutputPrompt(response.response);
+      
+      // If there's a masked image, load it
+      if (response.has_masks && response.masked_image_path) {
+        // Convert server path to URL
+        // Server returns paths like "./vis_output/filename_masked.jpg"
+        // We need to serve static files or convert to absolute URL
+        const path = response.masked_image_path.startsWith('./') 
+          ? response.masked_image_path.substring(2) 
+          : response.masked_image_path;
+        const imageUrl = `http://localhost:9527/${path}`;
+        setResultImage(imageUrl);
+      } else {
+        // Fallback to original image if no masked version
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setResultImage(reader.result as string);
+        };
+        reader.readAsDataURL(selectedImage);
+      }
+      
+      setProgress(100);
+      setState('result');
+    } catch (err) {
+      console.error('Error processing request:', err);
+      setOutputPrompt(
+        error || 'An error occurred while processing your request. Please try again.'
+      );
+      // Show original image on error
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setResultImage(reader.result as string);
+      };
+      reader.readAsDataURL(selectedImage);
+      setState('result');
+    }
   };
+
+  // Update progress based on loading state
+  useEffect(() => {
+    if (isLoading && state === 'processing') {
+      // Simulate progress while loading
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) return prev; // Don't go to 100 until done
+          return prev + 1;
+        });
+      }, 1100);
+      return () => clearInterval(interval);
+    }
+  }, [isLoading, state]);
 
   const handleDownload = () => {
     if (!resultImage) return;
@@ -75,41 +120,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-20">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          {state !== 'upload' && (
-            <button
-              onClick={handleReset}
-              className="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Back</span>
-            </button>
-          )}
-          {state === 'upload' && <div />}
-          <div className="flex items-center gap-2">
-            <Satellite className="w-6 h-6 text-blue-500" />
-            <h1 className="text-blue-500">GeoRescue</h1>
-          </div>
-        </div>
+        <Header 
+          showBackButton={state !== 'upload'} 
+          onBackClick={handleReset}
+        />
 
-        {/* Subtitle */}
-        {state === 'upload' && (
-          <div className="mb-8 text-center">
-            <h2 className="text-zinc-400 mb-2">
-              AI-Powered Disaster Response Analysis
-            </h2>
-            <p className="text-zinc-500">
-              Upload satellite imagery and get instant analysis for emergency response
-            </p>
-          </div>
-        )}
+        {state === 'upload' && <WelcomeSection />}
 
         {/* Upload State */}
         {state === 'upload' && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-zinc-300 mb-4">1. Upload Satellite Image</h3>
+              <SectionTitle>1. Upload Satellite Image</SectionTitle>
               <ImageUpload
                 onImageSelect={handleImageSelect}
                 selectedImage={selectedImage}
@@ -119,7 +141,7 @@ export default function App() {
 
             {selectedImage && (
               <div>
-                <h3 className="text-zinc-300 mb-4">2. Select Analysis Type</h3>
+                <SectionTitle>2. Select Analysis Type</SectionTitle>
                 <PromptSelector 
                   onPromptChange={setPrompt}
                   prompt={prompt}
@@ -140,39 +162,20 @@ export default function App() {
 
         {/* Processing State */}
         {state === 'processing' && (
-          <div className="space-y-6 py-12">
-            <div className="text-center">
-              <div className="inline-flex p-4 bg-blue-600/20 rounded-full mb-4">
-                <Satellite className="w-12 h-12 text-blue-500 animate-pulse" />
-              </div>
-              <h3 className="text-zinc-200 mb-2">
-                Processing Satellite Imagery...
-              </h3>
-              <p className="text-zinc-400">
-                Analyzing disaster response data
-              </p>
-            </div>
-            
-            <div className="space-y-2">
-              <Progress value={progress} className="h-2" />
-              <p className="text-center text-zinc-500">{progress}%</p>
-            </div>
+          <ProcessingView progress={progress} />
+        )}
 
-            <div className="space-y-2 text-center">
-              <p className="text-zinc-400">
-                {progress < 30 && 'Loading satellite data...'}
-                {progress >= 30 && progress < 60 && 'Running AI analysis...'}
-                {progress >= 60 && progress < 90 && 'Identifying key areas...'}
-                {progress >= 90 && 'Finalizing results...'}
-              </p>
-            </div>
+        {/* Error Display */}
+        {error && state !== 'processing' && (
+          <div className="mb-4 p-4 bg-red-900/20 border border-red-700 rounded-lg">
+            <p className="text-red-400 text-sm">{error}</p>
           </div>
         )}
 
         {/* Result State */}
         {state === 'result' && (
           <div>
-            <h3 className="text-zinc-300 mb-4">Analysis Results</h3>
+            <SectionTitle>Analysis Results</SectionTitle>
             <ResultDisplay
               imageUrl={resultImage}
               outputPrompt={outputPrompt}
