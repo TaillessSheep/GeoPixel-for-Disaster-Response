@@ -4,14 +4,121 @@
         "conversations": [
             {
                 "from": "human",
-                "value": "Can you describe the damage status of the houses?"
+                "value": "Could you provide segmentation masks for all damaged buildings in this image?"
             },
             {
                 "from": "bot",
-                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
+                "value": "Sure, they are <SEG>."
             }
         ],
         "image": "data/GeoPixelD/finetune/socal-fire_00000666_post_disaster.png",
-        "polygons": "data/GeoPixelD/finetune/socal-fire_00000666_post_disaster.json"
+        "polygon": [
+            [
+                [
+                    387,
+                    23
+                ],
+                [
+                    398,
+                    52
+                ],
+                [
+                    377,
+                    60
+                ],
+                [
+                    380,
+                    68
+                ],
+                [
+                    371,
+                    72
+                ],
+                [
+                    374,
+                    83
+                ],
+                [
+                    344,
+                    94
+                ],
+                [
+                    340,
+                    84
+                ],
+                [
+                    327,
+                    88
+                ],
+                [
+                    319,
+                    66
+                ],
+                [
+                    332,
+                    61
+                ],
+                [
+                    329,
+                    50
+                ],
+                [
+                    348,
+                    43
+                ],
+                [
+                    347,
+                    38
+                ],
+                [
+                    387,
+                    23
+                ]
+            ],
+            [
+                [
+                    196,
+                    202
+                ],
+                [
+                    216,
+                    192
+                ],
+                [
+                    222,
+                    203
+                ],
+                [
+                    201,
+                    213
+                ],
+                [
+                    196,
+                    202
+                ]
+            ],
+            [
+                [
+                    160,
+                    120
+                ],
+                [
+                    192,
+                    110
+                ],
+                [
+                    197,
+                    129
+                ],
+                [
+                    166,
+                    140
+                ],
+                [
+                    160,
+                    120
+                ]
+            ]
+        ]
     }
 ]

@@ -4,14 +4,89 @@
         "conversations": [
             {
                 "from": "human",
-                "value": "Can you describe the damage status of the houses?"
+                "value": "Could you provide segmentation masks for all damaged buildings in this image?"
             },
             {
                 "from": "bot",
-                "value": "There are several <p>destroyed buildings</p> [SEG] in the picture."
+                "value": "Sure, they are <SEG>."
             }
         ],
         "image": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000116_post_disaster.png",
-        "polygons": "data/GeoPixelD/finetune/santa-rosa-wildfire_00000116_post_disaster.json"
+        "polygon": [
+            [
+                [
+                    177,
+                    612
+                ],
+                [
+                    165,
+                    556
+                ],
+                [
+                    178,
+                    552
+                ],
+                [
+                    175,
+                    537
+                ],
+                [
+                    195,
+                    531
+                ],
+                [
+                    212,
+                    607
+                ],
+                [
+                    177,
+                    612
+                ]
+            ],
+            [
+                [
+                    0,
+                    710
+                ],
+                [
+                    11,
+                    720
+                ],
+                [
+                    8,
+                    729
+                ],
+                [
+                    0,
+                    742
+                ],
+                [
+                    0,
+                    710
+                ]
+            ],
+            [
+                [
+                    99,
+                    664
+                ],
+                [
+                    89,
+                    664
+                ],
+                [
+                    89,
+                    647
+                ],
+                [
+                    99,
+                    647
+                ],
+                [
+                    99,
+                    664
+                ]
+            ]
+        ]
     }
 ]
