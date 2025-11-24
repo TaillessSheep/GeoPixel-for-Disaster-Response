@@ -11,7 +11,7 @@ FINETUNE_DIR="$DATA_ROOT/GeoPixelD/finetune"
 DATA_TXT="$SCRIPT_DIR/../data.txt"
 
 ID_PNG_FOLDER="1EXM9g6uvPGw_SPdEo83scnR9dtHi6fIT"
-ID_JSON_FOLDER="1l4E01xpRqP9mXiZxzTTySSVOKGQH-lP_"
+ID_JSON_FOLDER="1Uq7ruYhaxdVfq4LKsAExJdjIP0397nqY"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -82,10 +82,14 @@ fetch_file_list() {
 
         echo "$response" | python3 -c "
 import sys, json
-data = json.load(sys.stdin)
-for f in data.get('files', []):
-    name = f['name'].replace('\n', '').replace('\r', '')
-    print(f'{f['id']}\t{name}')
+try:
+    data = json.load(sys.stdin)
+    for f in data.get('files', []):
+        name = f['name'].replace('\n', '').replace('\r', '')
+        fid = f['id']
+        print(fid + '\t' + name)
+except Exception as e:
+    sys.stderr.write(str(e) + '\n')
 " >> "$list_file"
 
         page_token=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin).get('nextPageToken', ''))")
@@ -143,13 +147,16 @@ main() {
         exit 1
     fi
 
-    log_info "=== Stable Download Script Started (API Mode) ==="
+    log_info "=== Stable Download Script Started (Clean & Sync Mode) ==="
 
-    log_info "Preparing directories..."
+
+    if [ -d "$DATA_ROOT" ]; then
+        log_warn "Wiping existing data directory: $DATA_ROOT"
+        rm -rf "$DATA_ROOT"
+    fi
+
+    log_info "Recreating directory structure..."
     mkdir -p "$FINETUNE_DIR"
-
-    mkdir -p "$DATA_ROOT"
-
     rm -f "$DATA_TXT"
     touch "$DATA_TXT"
 
