@@ -2,7 +2,7 @@
 
 set -u
 
-API_KEY="AIzaSyDPpEX8NJfsqdEOS1F7LhXy63UNOJXLZYs"
+API_KEY="GOOGLE-DRIVE_API-KEY"
 
 CONCURRENCY_LIMIT=20
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
