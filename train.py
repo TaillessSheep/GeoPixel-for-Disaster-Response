@@ -28,10 +28,10 @@ class ModelArguments:
     # GeoPixelModel arguments
     vision_pretrained: Optional[str] = field(default='facebook/sam2-hiera-large')
     train_mask_decoder: bool = True
-    out_dim : int = 256
-    ce_loss_weight : float = 1.0
-    dice_loss_weight : float = 0.5
-    bce_loss_weight : float = 2.0
+    out_dim: int = 256
+    ce_loss_weight: float = 0.5
+    dice_loss_weight: float = 2
+    bce_loss_weight: float = 1.5
     is_pretrained: bool = False
 
 @dataclass
@@ -65,9 +65,9 @@ class TrainingArguments(transformers.TrainingArguments):
 
 @dataclass
 class LoraArguments:
-    lora_r: int = 8 
-    lora_alpha: int = 16 
-    lora_dropout: float = 0.05
+    lora_r: int = 24
+    lora_alpha: int = 48
+    lora_dropout: float = 0.02
     lora_target_modules: List[str] = field(default_factory=lambda: [
         'attention.wqkv',
         'attention.wo',

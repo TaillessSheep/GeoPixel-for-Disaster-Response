@@ -72,19 +72,19 @@ PYTHONWARNINGS="ignore" srun \
     --use_lora True \
     --hd_num 1 \
     --output_dir output \
-    --num_train_epochs 200 \
-    --batch_size 2 \
-    --per_device_train_batch_size 1 \
+    --num_train_epochs 50 \
+    --batch_size 4 \
+    --per_device_train_batch_size 2 \
     --per_device_eval_batch_size 1 \
     --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 100 \
-    --save_total_limit 5 \
-    --learning_rate 3e-4 \
+    --save_steps 50 \
+    --save_total_limit 5\
+    --learning_rate 1e-4 \
     --weight_decay 0.0 \
     --adam_beta2 0.95 \
-    --warmup_steps 100 \
+    --warmup_steps 200 \
     --lr_scheduler_type "cosine" \
     --logging_steps 10 \
     --logging_dir "./logs" \
