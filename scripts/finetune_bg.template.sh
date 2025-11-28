@@ -7,11 +7,11 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --gres=gpu:2
 #SBATCH --time=08:00:00
-# Create Task: sbatch --account=mscaisuperpod --partition=normal --gres=gpu:2 --time=10:00:00 scripts/finetune_bg.template.sh
+# Create Task: sbatch --account=mscaisuperpod --partition=normal --gres=gpu:2 --time=00:20:00 scripts/finetune_bg.template.sh
 # Lookup Task: squeue -u $USER
 # Cancel Task: scancel <JOBID>
-# Task Logs: tail -n 100 logs/geopixel_finetune_322028.out
-# Task Logs: tail -n 100 logs/geopixel_finetune_322028.err
+# Task Logs: tail -n 100 logs/geopixel_finetune_[JOBID].out
+# Task Logs: tail -n 100 logs/geopixel_finetune_[JOBID].err
 
 
 source ~/.bashrc
@@ -80,7 +80,7 @@ PYTHONWARNINGS="ignore" srun \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 100 \
-    --save_total_limit 1 \
+    --save_total_limit 5 \
     --learning_rate 3e-4 \
     --weight_decay 0.0 \
     --adam_beta2 0.95 \
